@@ -1,0 +1,108 @@
+:host {
+  display: block;
+  min-height: 100vh;
+
+  background-image: url('https://plus.unsplash.com/premium_photo-1668487827029-2bd54133c303?q=80&w=1112&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+}
+
+:host::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(230, 240, 250, 0.2); 
+  backdrop-filter: blur(1px);
+  z-index: 0;
+}
+
+.home-container {
+  text-align: center;
+  padding-top: 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.home-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #074d92;
+  margin-bottom: 16px;
+  margin-top: 55px;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 220px);
+  gap: 25px;
+  justify-content: center;
+}
+
+.menu-btn {
+  height: 130px;
+  border-radius: 18px;
+  position: relative;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: none;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-btn::before {
+  content: "";
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: 85px;
+  opacity: 0.13;
+  bottom: 8px;
+  right: 8px;
+  width: 85px;
+  height: 85px;
+}
+
+.menu-btn span, 
+.menu-btn {
+  z-index: 2;
+}
+
+.menu-btn.pacijent {
+  background: #bbdefb;
+}
+.menu-btn.pacijent::before {
+  background-image: url("data:image/svg+xml,%3Csvg fill='black' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z'/%3E%3C/svg%3E");
+}
+
+.menu-btn.bolnica {
+  background: #c8e6c9;
+}
+.menu-btn.bolnica::before {
+  background-image: url("data:image/svg+xml,%3Csvg fill='black' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 3h-4V1h-6v2H5c-1.1 0-2 .9-2 2v17h18V5c0-1.1-.9-2-2-2zm-6 14h-2v-3H8v-2h3V9h2v3h3v2h-3v3z'/%3E%3C/svg%3E");
+}
+
+.menu-btn.dijagnoza {
+  background: #ffe0b2;
+}
+.menu-btn.dijagnoza::before {
+  background-image: url("data:image/svg+xml,%3Csvg fill='black' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 3H3v18h18V3zm-7 14h-2v-3H9v-2h3V9h2v3h3v2h-3v3z'/%3E%3C/svg%3E");
+}
+
+.menu-btn.odeljenje {
+  background: #f8bbd0;
+}
+.menu-btn.odeljenje::before {
+  background-image: url("data:image/svg+xml,%3Csvg fill='black' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z'/%3E%3C/svg%3E");
+}
+
+.menu-btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.06);
+}
+

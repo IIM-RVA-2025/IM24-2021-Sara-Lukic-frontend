@@ -1,0 +1,76 @@
+<h2 mat-dialog-title class="dialog-title">
+  {{ pacijent.id ? 'Izmeni pacijenta' : 'Novi pacijent' }}
+</h2>
+
+<mat-dialog-content class="dialog-content">
+
+  <!-- IME -->
+  <mat-form-field appearance="outline" class="dialog-field">
+    <mat-label>Ime</mat-label>
+    <input matInput required [(ngModel)]="pacijent.ime">
+    <mat-error *ngIf="!pacijent.ime">Ime je obavezno</mat-error>
+  </mat-form-field>
+
+  <!-- PREZIME -->
+  <mat-form-field appearance="outline" class="dialog-field">
+    <mat-label>Prezime</mat-label>
+    <input matInput required [(ngModel)]="pacijent.prezime">
+    <mat-error *ngIf="!pacijent.prezime">Prezime je obavezno</mat-error>
+  </mat-form-field>
+
+  <!-- DATUM ROĐENJA -->
+  <mat-form-field appearance="outline" class="dialog-field">
+    <mat-label>Datum rođenja</mat-label>
+    <input matInput type="date" required [(ngModel)]="pacijent.datumRodjenja">
+    <mat-error *ngIf="!pacijent.datumRodjenja">Datum rođenja je obavezan</mat-error>
+  </mat-form-field>
+
+  <!-- ZDRAVSTVENO OSIGURANJE (nije obavezno) -->
+  <mat-checkbox [(ngModel)]="pacijent.zdrOsiguranje" class="dialog-checkbox">
+    Zdravstveno osiguran
+  </mat-checkbox>
+
+  <!-- ODELJENJE -->
+  <mat-form-field appearance="outline" class="dialog-field">
+    <mat-label>Odeljenje</mat-label>
+    <mat-select required [(ngModel)]="pacijent.odeljenje">
+      <mat-option *ngFor="let o of data.odeljenja" [value]="o">
+        {{ o.naziv }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="!pacijent.odeljenje">Odeljenje je obavezno</mat-error>
+  </mat-form-field>
+
+  <!-- DIJAGNOZA -->
+  <mat-form-field appearance="outline" class="dialog-field">
+    <mat-label>Dijagnoza</mat-label>
+    <mat-select required [(ngModel)]="pacijent.dijagnoza">
+      <mat-option *ngFor="let d of data.dijagnoze" [value]="d">
+        {{ d.naziv }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="!pacijent.dijagnoza">Dijagnoza je obavezna</mat-error>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button class="cancel-btn" (click)="onCancel()">Odustani</button>
+
+  <!-- Dugme je disabled dok nisu popunjena sva polja -->
+  <button 
+    mat-raised-button 
+    color="primary" 
+    class="save-btn"
+    (click)="onSave()"
+    [disabled]="
+      !pacijent.ime || 
+      !pacijent.prezime || 
+      !pacijent.datumRodjenja || 
+      !pacijent.odeljenje || 
+      !pacijent.dijagnoza
+    "
+  >
+    Sačuvaj
+  </button>
+</div>

@@ -1,0 +1,44 @@
+<h2 mat-dialog-title class="dialog-title">
+  {{ odeljenje.id ? 'Izmeni odeljenje' : 'Novo odeljenje' }}
+</h2>
+
+<mat-dialog-content class="dialog-content">
+
+  <mat-form-field appearance="outline" class="dialog-field">
+    <mat-label>Naziv</mat-label>
+    <input matInput required [(ngModel)]="odeljenje.naziv">
+    <mat-error *ngIf="!odeljenje.naziv">Naziv je obavezan</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="dialog-field">
+    <mat-label>Lokacija</mat-label>
+    <input matInput required [(ngModel)]="odeljenje.lokacija">
+    <mat-error *ngIf="!odeljenje.lokacija">Lokacija je obavezna</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="dialog-field">
+    <mat-label>Bolnica</mat-label>
+    <mat-select required [(ngModel)]="odeljenje.bolnica">
+      <mat-option *ngFor="let b of data.bolnice" [value]="b">
+        {{ b.naziv }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="!odeljenje.bolnica">Odabir bolnice je obavezan</mat-error>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button class="cancel-btn" (click)="onCancel()">Odustani</button>
+
+  <!-- Dugme je DISABLED dok nisu popunjena sva polja -->
+  <button 
+    mat-raised-button 
+    color="primary" 
+    class="save-btn"
+    (click)="onSave()"
+    [disabled]="!odeljenje.naziv || !odeljenje.lokacija || !odeljenje.bolnica"
+  >
+    Sačuvaj
+  </button>
+</div>

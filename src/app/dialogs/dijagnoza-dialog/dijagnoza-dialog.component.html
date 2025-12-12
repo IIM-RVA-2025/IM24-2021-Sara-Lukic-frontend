@@ -1,0 +1,40 @@
+<h2 mat-dialog-title class="dialog-title">
+  {{ dijagnoza.id ? 'Izmeni dijagnozu' : 'Nova dijagnoza' }}
+</h2>
+
+<mat-dialog-content class="dialog-content">
+
+  <mat-form-field appearance="outline" class="dialog-field">
+    <mat-label>Naziv</mat-label>
+    <input matInput [(ngModel)]="dijagnoza.naziv" required>
+    <mat-error *ngIf="!dijagnoza.naziv">Naziv je obavezan</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="dialog-field">
+    <mat-label>Opis</mat-label>
+    <textarea matInput rows="3" [(ngModel)]="dijagnoza.opis" required></textarea>
+    <mat-error *ngIf="!dijagnoza.opis">Opis je obavezan</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="dialog-field">
+    <mat-label>Oznaka</mat-label>
+    <input matInput [(ngModel)]="dijagnoza.oznaka" required>
+    <mat-error *ngIf="!dijagnoza.oznaka">Oznaka je obavezna</mat-error>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button class="cancel-btn" (click)="onCancel()">Odustani</button>
+
+  <!-- Dugme je DISABLED dok nisu popunjena sva polja -->
+  <button 
+    mat-raised-button 
+    color="primary" 
+    class="save-btn"
+    (click)="onSave()"
+    [disabled]="!dijagnoza.naziv || !dijagnoza.opis || !dijagnoza.oznaka"
+  >
+    Sačuvaj
+  </button>
+</div>

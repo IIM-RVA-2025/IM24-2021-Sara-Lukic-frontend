@@ -1,0 +1,85 @@
+<mat-toolbar class="toolbar">
+
+  <span class="toolbar-side"></span>
+
+  <span class="toolbar-title">
+    Dijagnoze
+  </span>
+
+  <span class="toolbar-side toolbar-side--right">
+    <button mat-raised-button color="primary" (click)="dodajDijagnozu()">
+      <mat-icon>add</mat-icon>
+      <span>Nova dijagnoza</span>
+    </button>
+  </span>
+</mat-toolbar>
+
+<div class="page-background">
+  <div class="table-wrapper">
+
+    <div class="search-row">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Pretraži dijagnoze</mat-label>
+        <input
+          matInput
+          [(ngModel)]="searchValue"
+          (keyup)="applyFilter(searchValue)"
+          placeholder="Naziv, opis ili oznaka"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          *ngIf="searchValue"
+          (click)="clearFilter()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-icon matSuffix *ngIf="!searchValue">search</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="table-card mat-elevation-z2">
+
+      <table mat-table [dataSource]="dataSource" class="patients-table">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let d">{{ d.id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="naziv">
+          <th mat-header-cell *matHeaderCellDef> Naziv </th>
+          <td mat-cell *matCellDef="let d">{{ d.naziv }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="opis">
+          <th mat-header-cell *matHeaderCellDef> Opis </th>
+          <td mat-cell *matCellDef="let d">{{ d.opis }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="oznaka">
+          <th mat-header-cell *matHeaderCellDef> Oznaka </th>
+          <td mat-cell *matCellDef="let d">{{ d.oznaka }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="actions-header">
+            Akcije
+          </th>
+          <td mat-cell *matCellDef="let d" class="actions-cell">
+            <button mat-icon-button color="primary" (click)="izmeniDijagnozu(d)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="obrisiDijagnozu(d.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      </table>
+
+    </div>
+  </div>
+</div>

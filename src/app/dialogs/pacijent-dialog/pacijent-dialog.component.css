@@ -1,0 +1,41 @@
+.dialog-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: #356ca4;
+  margin-bottom: 4px;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 8px;
+  background-color: #edf4fb;
+}
+
+.dialog-field {
+  width: 100%;
+}
+
+.dialog-checkbox {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  color: #356ca4;
+}
+
+.dialog-actions {
+  padding: 8px 24px 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  border-top: 1px solid #e0e6f0;
+}
+
+.cancel-btn {
+  color: #5f6b7a;
+}
+
+.save-btn {
+  min-width: 100px;
+}
